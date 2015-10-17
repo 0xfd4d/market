@@ -13,4 +13,4 @@ Simple market php application.
 
 ## Installation
 
-Run `git clone https://github.com/rst4d/php-box`, then enter `php-box` dir and run `vagrant up`. After box downloading and installaton you can visit [http://local.dev](http://local.dev).
+Run `git clone https://github.com/AntiValve/market`, then run `vagrant up` in app directory. After box downloading and installaton you can visit [http://local.dev](http://local.dev).
