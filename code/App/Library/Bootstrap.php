@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Library;
+namespace App\Library;
 
 class Bootstrap
 {
     public function run()
     {
-        require_once __DIR__.'/../resources/views/index.php';
+        require_once __DIR__.'/../../resources/views/index.php';
     }
 }
