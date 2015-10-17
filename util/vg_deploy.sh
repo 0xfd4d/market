@@ -24,10 +24,14 @@ then
     curl -sS https://getcomposer.org/installer | php
     mv composer.phar /usr/local/bin/composer
 
+    echo "Running composer installation..."
+    cd $base_dir/code/
+    composer install
+
     echo "Installing bower and components..."
     npm i -g bower
     cd $base_dir/
-    bower i 
+    bower i
 
     echo "Setting permissions..."
     usermod -G vagrant www-data
