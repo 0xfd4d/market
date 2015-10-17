@@ -2,10 +2,12 @@
 
 namespace App\Library;
 
+use App\Library\CallMethod;
+
 class Bootstrap
 {
     public function run()
     {
-        require_once __DIR__.'/../../resources/views/index.php';
+        CallMethod::call('\\App\\Controllers\\IndexController', 'index');
     }
 }
