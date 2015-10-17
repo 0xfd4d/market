@@ -1,10 +1,5 @@
-# php development box
-Simple box for quick start.
-## Features:
-- ubuntu/trusty64 (Ubuntu 14.04 x64)
-- PHP 5.6
-- MySQL
-- Simple URL rewriter
+# market
+Simple market php application.
 
 ## Requirements
 - VirtualBox
