@@ -1,17 +1,21 @@
+<?php
+    use App\Library\View;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <title>Market</title>
+    <title>Cart - Market</title>
 </head>
 <body>
-    <?php include_once 'navbar.php'; ?>
+    <?php View::view('navbar'); ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Hello wolrd</h1>
+                <h1>Cart is here!</h1>
             </div>
         </div>
     </div>

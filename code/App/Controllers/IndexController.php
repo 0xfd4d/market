@@ -10,8 +10,4 @@ class IndexController extends Controller
     {
         View::view('index');
     }
-    public function test($request)
-    {
-        View::view('index');
-    }
 }
