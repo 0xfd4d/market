@@ -2,13 +2,19 @@
 
 namespace App\Library;
 
-use App\Library\URL;
-
 class Route
 {
-    public static function add($url, $method)
+    public function get()
     {
-        if(URL::segments(URL::get()) == URL::segments($url))
+        return $_SERVER['REQUEST_URI'];
+    }
+    public function segments($url)
+    {
+        return explode("/", $url);
+    }
+    public function add($url, $method)
+    {
+        if($this->segments($this->get()) == $this->segments($url))
         {
             $method();
             exit;
