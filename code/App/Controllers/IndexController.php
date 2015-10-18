@@ -7,7 +7,7 @@ use App\Library\Request;
 
 class IndexController extends Controller
 {
-    public function index($request)
+    public function index()
     {
         View::view('index');
     }

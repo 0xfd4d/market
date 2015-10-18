@@ -7,10 +7,10 @@ use App\Library\CallMethod;
 $route = new Route();
 
 $route->add('/', function($request) {
-    CallMethod::call('\\App\\Controllers\\IndexController', 'index', [$request]);
+    CallMethod::call('\\App\\Controllers\\IndexController', 'index', []);
 });
 
-$route->add('/test/:id', function($request) {
+$route->add('/test//', function($request) {
     CallMethod::call('\\App\\Controllers\\IndexController', 'test', [$request]);
 });
 

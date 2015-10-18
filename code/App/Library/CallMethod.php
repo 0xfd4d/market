@@ -11,14 +11,7 @@ class CallMethod
             $object = new $class();
             if(method_exists($object, $method))
             {
-                if($args)
-                {
-                    call_user_func_array([$object, $method], $args);
-                }
-                else
-                {
-                    call_user_func([$object, $method]);
-                }
+                call_user_func_array([$object, $method], $args);
             }
         }
     }
