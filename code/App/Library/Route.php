@@ -2,21 +2,38 @@
 
 namespace App\Library;
 
+use App\Library\Request;
+
 class Route
 {
-    public function get()
+    private $url = NULL;
+    private $segments = NULL;
+    public function __construct()
+    {
+        $this->url = $this->getURL();
+        $this->segments = $this->getSegments($this->url);
+    }
+    public function getURL()
     {
         return $_SERVER['REQUEST_URI'];
     }
-    public function segments($url)
+    public function getSegments($url)
     {
         return explode("/", $url);
     }
+    private function match()
+    {
+        foreach($this->segments as $segment)
+        {
+
+        }
+    }
     public function add($url, $method)
     {
-        if($this->segments($this->get()) == $this->segments($url))
+        if($this->segments == $this->getSegments($url))
         {
-            $method();
+            $request['segments'] = $this->segments;
+            $method($request);
             exit;
         }
     }
