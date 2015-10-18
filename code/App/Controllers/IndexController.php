@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
-class IndexController
+use App\Library\View;
+
+class IndexController extends Controller
 {
     public function index()
     {
-        $title = "Market";
-        require_once __DIR__.'/../../resources/views/index.php';
+        View::view('index');
     }
 }
