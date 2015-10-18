@@ -4,11 +4,13 @@ use App\Library\View;
 use App\Library\Route;
 use App\Library\CallMethod;
 
-Route::add('/', function() {
+$route = new Route();
+
+$route->add('/', function() {
     CallMethod::call('\\App\\Controllers\\IndexController', 'index');
 });
 
-Route::add('/product', function() {
+$route->add('/test', function() {
     CallMethod::call('\\App\\Controllers\\IndexController', 'test', [1]);
 });
 
