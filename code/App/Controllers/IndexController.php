@@ -10,4 +10,9 @@ class IndexController extends Controller
     {
         View::view('index');
     }
+    public function test($id)
+    {
+        echo $id;
+        //View::view('index');
+    }
 }
