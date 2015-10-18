@@ -6,12 +6,12 @@ use App\Library\CallMethod;
 
 $route = new Route();
 
-$route->add('/', function() {
-    CallMethod::call('\\App\\Controllers\\IndexController', 'index');
+$route->add('/', function($request) {
+    CallMethod::call('\\App\\Controllers\\IndexController', 'index', [$request]);
 });
 
-$route->add('/test', function() {
-    CallMethod::call('\\App\\Controllers\\IndexController', 'test', [1]);
+$route->add('/test/:id', function($request) {
+    CallMethod::call('\\App\\Controllers\\IndexController', 'test', [$request]);
 });
 
 /**
