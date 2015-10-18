@@ -19,7 +19,8 @@ class Route
     }
     public function getSegments($url)
     {
-        return explode("/", $url);
+        array_shift(explode("/", $url));
+        return $url;
     }
     private function match()
     {
@@ -28,12 +29,12 @@ class Route
 
         }
     }
-    public function add($url, $method)
+    public function add($url, $class, $method)
     {
         if($this->segments == $this->getSegments($url))
         {
             $request['segments'] = $this->segments;
-            $method($request);
+            CallMethod::call($class, $method, [$request]);
             exit;
         }
     }
