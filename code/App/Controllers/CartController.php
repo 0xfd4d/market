@@ -9,10 +9,10 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        View::view('cart');
-    }
-    public function create(Request $request)
-    {
-        View::view('cart');
+        View::view('app', [
+            'title' => 'Cart',
+            'view' => 'cart/index',
+            ]
+        );
     }
 }

@@ -46,6 +46,8 @@ then
 
     echo "Create DB..."
     mysql -u root -p$DBPASSWD -e "CREATE DATABASE local CHARACTER SET utf8 COLLATE utf8_general_ci;"
+    cd $base_dir/code
+    php vendor/bin/phinx migrate
 
     touch ~/.deploy_run
 fi

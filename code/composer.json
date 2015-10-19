@@ -7,7 +7,9 @@
             "email": "bronks@mail.ru"
         }
     ],
-    "require": {},
+    "require": {
+        "robmorgan/phinx": "^0.4.6"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "App"
