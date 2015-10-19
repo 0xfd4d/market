@@ -3,15 +3,12 @@
 namespace App\Controllers;
 
 use App\Library\View;
+use App\Library\Request;
 
-class cartController extends Controller
+class CartController extends Controller
 {
-    public function index($request)
+    public function index(Request $request)
     {
         View::view('cart');
-    }
-    public function add($request)
-    {
-        
     }
 }

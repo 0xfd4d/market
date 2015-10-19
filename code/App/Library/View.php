@@ -6,6 +6,6 @@ class View
 {
     public static function view($name)
     {
-        require_once __DIR__.'/../../resources/views/'.$name.'.view.php';
+        include __DIR__.'/../../resources/views/'.$name.'.view.php';
     }
 }
