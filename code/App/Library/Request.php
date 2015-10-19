@@ -11,7 +11,7 @@ class Request
 
     public function getURL()
     {
-        return $_SERVER['REQUEST_URI'];
+        return $this->formatUrl($_SERVER['REQUEST_URI']);
     }
     public function getSegments($url)
     {

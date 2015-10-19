@@ -16,9 +16,7 @@ final class Route
     private static function match($pattern, $url)
     {
         $pattern = self::$request->formatUrl($pattern);
-        $url = self::$request->formatUrl($url);
-        $pattern = '#^'.$pattern.'$#';
-        if(preg_match($pattern, $url, $params))
+        if(preg_match('#^'.$pattern.'$#', $url, $params))
         {
             self::$request->setParams($params);
             return true;
