@@ -15,29 +15,40 @@ final class Route
     }
     private static function match($pattern, $url)
     {
+        $pattern = self::$request->formatUrl($pattern);
+        $url = self::$request->formatUrl($url);
         $pattern = '#^'.$pattern.'$#';
         if(preg_match($pattern, $url, $params))
         {
-            return $params;
+            self::$request->setParams($params);
+            return true;
         }
         return false;
     }
-    public static function add($pattern, $class, $method)
+    public static function methodRequestMatch($requestMethod)
     {
-        if($params = self::match($pattern, self::$request->url))
+        if(self::$request->requestMethod == $requestMethod)
         {
-            array_shift($params);
-            self::$request->params = $params;
+            return true;
+        }
+        if($requestMethod == 'ANY')
+        {
+            return true;
+        }
+        return false;
+    }
+    public static function add($requestMethod, $pattern, $class, $method)
+    {
+        if(self::match($pattern, self::$request->url) && self::methodRequestMatch($requestMethod))
+        {
             CallMethod::call($class, $method, [self::$request]);
             exit;
         }
     }
-    public static function addCallback($pattern, $callback)
+    public static function addCallback($requestMethod, $pattern, $callback)
     {
-        if($params = self::match($pattern, self::$request->url))
+        if(self::match($pattern, self::$request->url) && self::methodRequestMatch($requestMethod))
         {
-            array_shift($params);
-            self::$request->params = $params;
             $callback(self::$request);
             exit;
         }

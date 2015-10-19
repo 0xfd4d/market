@@ -7,20 +7,20 @@ use App\Library\CallMethod;
 
 Route::init();
 
-Route::add('/', '\\App\\Controllers\\IndexController', 'index');
-Route::add('/cart', '\\App\\Controllers\\CartController', 'index');
+Route::add('GET', '/', '\\App\\Controllers\\IndexController', 'index');
+Route::add('GET', '/cart', '\\App\\Controllers\\CartController', 'index');
 
-Route::addCallback('/test/(\w+)', function(Request $request) {
-    print_r($request->params);
+Route::addCallback('GET', '/', function(Request $request) {
+    print_r($request);
 });
 
-Route::addCallback('/test/(\w+)/test/(\w+)/test/(\w+)', function(Request $request) {
+Route::addCallback('GET', '/test/(\w+)/test/(\w+)/test/(\w+)', function(Request $request) {
     print_r($request->params);
 });
 
 /**
  * 404 error.
  */
-Route::addCallback('(.+)', function() {
+Route::addCallback('ANY', '(.*)', function() {
     View::view('404');
 });

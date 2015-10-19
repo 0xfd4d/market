@@ -11,7 +11,7 @@ class Request
 
     public function getURL()
     {
-        return rtrim($_SERVER['REQUEST_URI'], '/');
+        return $_SERVER['REQUEST_URI'];
     }
     public function getSegments($url)
     {
@@ -21,6 +21,16 @@ class Request
     public function getMethod()
     {
         return $_SERVER['REQUEST_METHOD'];
+    }
+    public function setParams($params)
+    {
+        array_shift($params);
+        $this->params = $params;
+        return $params;
+    }
+    public function formatUrl($url)
+    {
+        return '/'.trim($url, '/').'/';
     }
     public function run()
     {
