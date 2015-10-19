@@ -4,37 +4,33 @@ namespace App\Library;
 
 use App\Library\Request;
 
-class Route
+final class Route
 {
-    private $url = NULL;
-    private $segments = NULL;
-    public function __construct()
-    {
-        $this->url = $this->getURL();
-        $this->segments = $this->getSegments($this->url);
-    }
-    public function getURL()
-    {
-        return $_SERVER['REQUEST_URI'];
-    }
-    public function getSegments($url)
-    {
-        array_shift(explode("/", $url));
-        return $url;
-    }
-    private function match()
-    {
-        foreach($this->segments as $segment)
-        {
+    public static $routes = NULL;
+    public static $request = NULL;
 
+    public static function init()
+    {
+        self::$request = new Request();
+        self::$request->run();
+    }
+    private static function match($pattern, $url)
+    {
+        return true;
+    }
+    public static function add($pattern, $class, $method)
+    {
+        if(self::match($pattern, self::$request->url))
+        {
+            CallMethod::call($class, $method, [self::$request]);
+            exit;
         }
     }
-    public function add($url, $class, $method)
+    public static function addCallback($pattern, $callback)
     {
-        if($this->segments == $this->getSegments($url))
+        if(self::match($pattern, self::$request->url))
         {
-            $request['segments'] = $this->segments;
-            CallMethod::call($class, $method, [$request]);
+            $callback(self::$request);
             exit;
         }
     }
