@@ -2,21 +2,16 @@
 
 use App\Library\View;
 use App\Library\Route;
-use App\Library\Request;
 use App\Library\CallMethod;
 
 Route::init();
 
-Route::add('/', '\\App\\Controllers\\IndexController', 'index');
-
+Route::add('', '\\App\\Controllers\\IndexController', 'index');
 Route::add('/cart', '\\App\\Controllers\\CartController', 'index');
 
-
-// Route::addCallback('/test', function(Request $request) {
-//     print_r($request);
-// });
-
 /**
- * Call 404 error if none of this routes not run.
+ * 404 error.
  */
-View::view('404');
+Route::addCallback('(.+)', function() {
+    View::view('404');
+});

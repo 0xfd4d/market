@@ -11,4 +11,8 @@ class CartController extends Controller
     {
         View::view('cart');
     }
+    public function create(Request $request)
+    {
+        View::view('cart');
+    }
 }
