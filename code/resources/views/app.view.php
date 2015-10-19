@@ -8,16 +8,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <title>Cart - Market</title>
+    <title><?php echo $viewParams['title']; ?> - Market</title>
 </head>
 <body>
     <?php View::view('navbar'); ?>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Cart is here!</h1>
-            </div>
-        </div>
+        <?php View::view($viewParams['view']); ?>
     </div>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
