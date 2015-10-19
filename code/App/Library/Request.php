@@ -5,12 +5,13 @@ namespace App\Library;
 class Request
 {
     public $url = NULL;
+    public $params = NULL;
     public $segments = NULL;
     public $requestMethod = NULL;
 
     public function getURL()
     {
-        return rtrim($_SERVER['REQUEST_URI'], '/');
+        return urldecode(rtrim($_SERVER['REQUEST_URI'], '/'));
     }
     public function getSegments($url)
     {

@@ -15,22 +15,29 @@ final class Route
     }
     private static function match($pattern, $url)
     {
-        if(preg_match('#^'.$pattern.'$#', $url))
-            return true;
+        $pattern = '#^'.$pattern.'$#';
+        if(preg_match($pattern, $url, $params))
+        {
+            return $params;
+        }
         return false;
     }
     public static function add($pattern, $class, $method)
     {
-        if(self::match($pattern, self::$request->url))
+        if($params = self::match($pattern, self::$request->url))
         {
+            array_shift($params);
+            self::$request->params = $params;
             CallMethod::call($class, $method, [self::$request]);
             exit;
         }
     }
     public static function addCallback($pattern, $callback)
     {
-        if(self::match($pattern, self::$request->url))
+        if($params = self::match($pattern, self::$request->url))
         {
+            array_shift($params);
+            self::$request->params = $params;
             $callback(self::$request);
             exit;
         }
