@@ -9,6 +9,9 @@ Route::init();
 
 Route::add('/', '\\App\\Controllers\\IndexController', 'index');
 
+Route::add('/cart', '\\App\\Controllers\\CartController', 'index');
+
+
 // Route::addCallback('/test', function(Request $request) {
 //     print_r($request);
 // });
