@@ -11,12 +11,11 @@ class Request
 
     public function getURL()
     {
-        return urldecode(rtrim($_SERVER['REQUEST_URI'], '/'));
+        return rtrim($_SERVER['REQUEST_URI'], '/');
     }
     public function getSegments($url)
     {
-        $return = preg_split("/\//", $url);
-        array_shift($return);
+        $return = preg_split('/\//', $url, -1, PREG_SPLIT_NO_EMPTY);
         return $return;
     }
     public function getMethod()
