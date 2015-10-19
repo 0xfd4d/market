@@ -10,13 +10,11 @@ class Request
 
     public function getURL()
     {
-        return $_SERVER['REQUEST_URI'];
+        return rtrim($_SERVER['REQUEST_URI'], '/');
     }
     public function getSegments($url)
     {
-        $return = $url;
-        $return = urldecode(rtrim($return, '/'));
-        $return = preg_split("/\//", $return);
+        $return = preg_split("/\//", $url);
         array_shift($return);
         return $return;
     }
@@ -27,7 +25,7 @@ class Request
     public function run()
     {
         $this->url = $this->getUrl();
-        $this->segments = $this->getSegments($this->getUrl());
+        $this->segments = $this->getSegments($this->url);
         $this->requestMethod = $this->getMethod();
     }
 }
