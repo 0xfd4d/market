@@ -1,17 +1,30 @@
 <?php
 
+use App\Library\DB;
 use App\Library\View;
 use App\Library\Route;
 use App\Library\Request;
-use App\Library\CallMethod;
+
+use App\Library\Debug;
 
 Route::init();
 
 Route::add('GET', '/', '\\App\\Controllers\\IndexController', 'index');
 Route::add('GET', '/cart', '\\App\\Controllers\\CartController', 'index');
 
-Route::add('GET', '/auth/login', '\\App\\Controllers\\UserController', 'login');
-Route::add('GET', '/auth/register', '\\App\\Controllers\\UserController', 'register');
+Route::add('GET', '/auth/login', '\\App\\Controllers\\AuthController', 'loginView');
+Route::add('POST', '/auth/login', '\\App\\Controllers\\AuthController', 'login');
+Route::add('GET', '/auth/register', '\\App\\Controllers\\AuthController', 'registerView');
+Route::add('POST', '/auth/register', '\\App\\Controllers\\AuthController', 'register');
+
+Route::addCallback('GET', '/db', function() {
+    Debug::dd(
+        DB::insert("INSERT INTO users (id, name, email, password) VALUES(NULL, 'rst', 'email@example.com', 'qwe123')")
+    );
+});
+Route::addCallback('GET', '/db/select', function() {
+    Debug::dd(DB::select("SELECT * FROM users"));
+});
 
 /**
  * 404 error.
