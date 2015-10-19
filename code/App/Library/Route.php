@@ -6,7 +6,6 @@ use App\Library\Request;
 
 final class Route
 {
-    public static $routes = NULL;
     public static $request = NULL;
 
     public static function init()
@@ -16,7 +15,9 @@ final class Route
     }
     private static function match($pattern, $url)
     {
-        return true;
+        if(preg_match('#^'.$pattern.'$#', $url))
+            return true;
+        return false;
     }
     public static function add($pattern, $class, $method)
     {
