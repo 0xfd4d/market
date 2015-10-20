@@ -47,7 +47,9 @@ class AuthController extends Controller
         View::view('app', [
             'title' => 'Login',
             'view' => 'auth/login',
-            'request' => $request
+            'params' => [
+                    'request' => $request
+                ]
             ]
         );
     }
@@ -56,8 +58,15 @@ class AuthController extends Controller
         View::view('app', [
             'title' => 'Register',
             'view' => 'auth/register',
-            'request' => $request
+            'params' => [
+                    'request' => $request
+                ]
             ]
         );
+    }
+    public function logout()
+    {
+        Auth::logout();
+        header('Location: /');
     }
 }

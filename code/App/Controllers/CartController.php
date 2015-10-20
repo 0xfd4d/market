@@ -12,6 +12,7 @@ class CartController extends Controller
         View::view('app', [
             'title' => 'Cart',
             'view' => 'cart/index',
+            'params' => []
             ]
         );
     }

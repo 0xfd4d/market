@@ -11,7 +11,8 @@ class IndexController extends Controller
     {
         View::view('app', [
             'title' => 'Home',
-            'view' => 'index/index'
+            'view' => 'index/index',
+            'params' => []
             ]
         );
     }
