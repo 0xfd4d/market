@@ -13,7 +13,7 @@
 <body>
     <?php View::view('navbar'); ?>
     <div class="container">
-        <?php View::view($viewParams['view']); ?>
+        <?php View::view($viewParams['view'], $viewParams); ?>
     </div>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -17,15 +17,6 @@ Route::add('POST', '/auth/login', '\\App\\Controllers\\AuthController', 'login')
 Route::add('GET', '/auth/register', '\\App\\Controllers\\AuthController', 'registerView');
 Route::add('POST', '/auth/register', '\\App\\Controllers\\AuthController', 'register');
 
-Route::addCallback('GET', '/db', function() {
-    Debug::dd(
-        DB::insert("INSERT INTO users (id, name, email, password) VALUES(NULL, 'rst', 'email@example.com', 'qwe123')")
-    );
-});
-Route::addCallback('GET', '/db/select', function() {
-    Debug::dd(DB::select("SELECT * FROM users"));
-});
-
 /**
  * 404 error.
  */
