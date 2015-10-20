@@ -13,6 +13,23 @@ class Auth
             return true;
         return false;
     }
+    public static function user()
+    {
+        if(self::check())
+        {
+            $query = DB::$db->prepare('SELECT * FROM users WHERE id=?');
+            $query->execute([$_SESSION['auth']['id']]);
+            $result = $query->fetchAll();
+            print_r($result);
+            self::$user = $result[0];
+            return $result[0];
+        }
+        return false;
+    }
+    public static function logout()
+    {
+        session_destroy();
+    }
     public static function validateRegistration(Request $request)
     {
         $errors = [];
@@ -85,7 +102,12 @@ class Auth
     }
     public function login(Request $request)
     {
+        $query = DB::$db->prepare('SELECT * FROM users WHERE email=?');
+        $query->execute([$request->post['email']]);
+        $result = $query->fetch();
         $_SESSION['auth']['loggedin'] = true;
+        $_SESSION['auth']['id'] = $result[0];
+
     }
     private static function encryptPassword($password)
     {

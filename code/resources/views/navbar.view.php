@@ -24,7 +24,8 @@ use App\Library\Auth;
                     <li><a href="/auth/login">Login</a></li>
                     <li><a href="/auth/register">Register</a></li>
                 <?php else: ?>
-                    <span class='navbar-text'>You are logged in.</span>
+                    <li class='navbar-text'>You are logged in.</li>
+                    <li><a href="/auth/logout">Logout</a></li>
                 <?php endif ?>
             </ul>
         </div><!-- /.navbar-collapse -->
