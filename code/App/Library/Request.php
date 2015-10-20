@@ -8,6 +8,8 @@ class Request
     public $params = NULL;
     public $segments = NULL;
     public $requestMethod = NULL;
+    public $post = [];
+    public $errors = NULL;
 
     public function getURL()
     {
@@ -32,10 +34,31 @@ class Request
     {
         return '/'.trim($url, '/').'/';
     }
+    public function formatPost()
+    {
+        $posts = $_POST;
+        foreach($posts as $post => $key)
+        {
+            $posts[$key] = trim($post);
+        }
+        return $posts;
+    }
+    public function hasPost($post)
+    {
+        if(isset($this->post[$post]))
+        {
+            if(strlen($this->post[$post]))
+            {
+                return $this->post[$post];
+            }
+        }
+        return false;
+    }
     public function run()
     {
         $this->url = $this->getUrl();
         $this->segments = $this->getSegments($this->url);
         $this->requestMethod = $this->getMethod();
+        $this->post = $this->formatPost();
     }
 }
