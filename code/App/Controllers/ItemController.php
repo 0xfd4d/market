@@ -12,7 +12,7 @@ class ItemController extends Controller
     {
         $items = Items::getItems();
         View::view('app', [
-            'title' => 'Shop',
+            'title' => 'Home',
             'view' => 'items/index',
             'params' => [
                     'items' => $items,

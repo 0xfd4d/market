@@ -10,6 +10,7 @@ use App\Library\Auth;
 Route::init();
 
 Route::add('GET', '/', '\\App\\Controllers\\ItemController', 'index');
+Route::add('GET', '/show/(\w+)', '\\App\\Controllers\\ItemController', 'show');
 Route::add('POST', '/create', '\\App\\Controllers\\ItemController', 'create');
 
 //Route::add('GET', '/cart', '\\App\\Controllers\\CartController', 'index');
@@ -27,7 +28,8 @@ Route::add('GET', '/auth/logout', '\\App\\Controllers\\AuthController', 'logout'
 Route::addCallback('ANY', '(.*)', function() {
     View::view('app', [
         'title' => '404',
-        'view' => '404'
+        'view' => '404',
+        'params' => []
         ]
     );
 });

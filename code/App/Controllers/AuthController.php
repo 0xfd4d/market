@@ -32,7 +32,8 @@ class AuthController extends Controller
             Auth::register($request);
             View::view('app', [
                 'title' => 'Register',
-                'view' => 'auth/success.register'
+                'view' => 'auth/success.register',
+                'params' => []
                 ]
             );
         }
