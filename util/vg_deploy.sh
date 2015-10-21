@@ -49,5 +49,8 @@ then
     cd $base_dir/code
     php vendor/bin/phinx migrate
 
+    echo "Running database seeding..."
+    php seed.php
+
     touch ~/.deploy_run
 fi

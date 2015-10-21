@@ -30,8 +30,8 @@ class CreateItemsTable extends AbstractMigration
         $table = $this->table('items');
         $table->addColumn('name', 'string')
                 ->addColumn('price', 'string')
-                ->addColumn('image', 'string')
-                ->addColumn('description', 'string')
+                ->addColumn('image', 'text')
+                ->addColumn('description', 'text')
                 ->addColumn('created', 'timestamp', array('default' => 'CURRENT_TIMESTAMP'))
                 ->create();
     }
