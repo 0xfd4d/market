@@ -109,7 +109,7 @@ class Auth
         $_SESSION['auth']['id'] = $result[0];
 
     }
-    private static function encryptPassword($password)
+    public static function encryptPassword($password)
     {
         return sha1($password);
     }
