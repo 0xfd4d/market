@@ -47,9 +47,11 @@ then
     echo "Create DB..."
     mysql -u root -p$DBPASSWD -e "CREATE DATABASE local CHARACTER SET utf8 COLLATE utf8_general_ci;"
     cd $base_dir/code
+    cp example.phinx.yml phinx.yml
     php vendor/bin/phinx migrate
 
     echo "Running database seeding..."
+    cd $base_dir/code
     php seed.php
 
     touch ~/.deploy_run
