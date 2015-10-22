@@ -1,4 +1,5 @@
 .vagrant
 vendor
 bower_components
+phinx.yml
 npm-debug.log*
