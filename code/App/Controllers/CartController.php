@@ -16,4 +16,13 @@ class CartController extends Controller
             ]
         );
     }
+    public function add(Request $request)
+    {
+        View::view('app', [
+            'title' => 'Cart',
+            'view' => 'cart/index',
+            'params' => []
+            ]
+        );
+    }
 }

@@ -24,7 +24,15 @@ class ItemController extends Controller
     }
     public function show(Request $request)
     {
-
+        $item = Items::getItemById($request->params[0]);
+        View::view('app', [
+            'title' => 'Home',
+            'view' => 'items/show',
+            'params' => [
+                    'item' => $item
+                ]
+            ]
+        );
     }
     public function create(Request $request)
     {

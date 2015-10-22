@@ -13,6 +13,13 @@ class Items
         $result = $query->fetchAll();
         return $result;
     }
+    public static function getItemById($id)
+    {
+        $query = DB::$db->prepare('SELECT * FROM items WHERE id=?');
+        $query->execute([$id]);
+        $result = $query->fetchAll();
+        return $result[0];
+    }
     public static function putItem($request)
     {
         $query = DB::$db->prepare('INSERT INTO items (name, price, image, description) VALUES (?, ?, ?, ?)');
