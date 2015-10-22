@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Library\View;
 use App\Library\Items;
 use App\Library\Request;
+use App\Library\Auth;
 
 class ItemController extends Controller
 {
@@ -27,7 +28,36 @@ class ItemController extends Controller
     }
     public function create(Request $request)
     {
-        Items::putItem($request);
+        if(!Auth::isAdmin())
+        {
+            header('Location: /');
+            exit();
+        }
+        View::view('app', [
+            'title' => 'Create',
+            'view' => 'items/create',
+            'params' => [
+                    'request' => $request
+                ]
+            ]
+        );
+    }
+    public function store(Request $request)
+    {
+        if(!Auth::isAdmin())
+        {
+            header('Location: /');
+            exit();
+        }
+        $errors = Items::validateCreateItem($request);
+        if(empty($errors[0]))
+        {
+            Items::putItem($request);
+        }
+        else {
+            $request->errors = $errors;
+            $this->create($request);
+        }
     }
     // public function update(Request $request)
     // {

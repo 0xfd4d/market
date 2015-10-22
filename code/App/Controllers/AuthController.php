@@ -7,11 +7,15 @@ use App\Library\Auth;
 use App\Library\View;
 use App\Library\Request;
 
-
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        if(Auth::check())
+        {
+            header('Location: /');
+            exit();
+        }
         $errors = Auth::validateLogin($request);
         if(empty($errors[0]))
         {
@@ -26,6 +30,11 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
+        if(Auth::check())
+        {
+            header('Location: /');
+            exit();
+        }
         $errors = Auth::validateRegistration($request);
         if(empty($errors[0]))
         {
@@ -45,6 +54,11 @@ class AuthController extends Controller
     }
     public function loginView(Request $request)
     {
+        if(Auth::check())
+        {
+            header('Location: /');
+            exit();
+        }
         View::view('app', [
             'title' => 'Login',
             'view' => 'auth/login',
@@ -56,6 +70,11 @@ class AuthController extends Controller
     }
     public function registerView(Request $request)
     {
+        if(Auth::check())
+        {
+            header('Location: /');
+            exit();
+        }
         View::view('app', [
             'title' => 'Register',
             'view' => 'auth/register',

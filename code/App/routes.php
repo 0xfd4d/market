@@ -10,11 +10,11 @@ use App\Library\Auth;
 Route::init();
 
 Route::add('GET', '/', '\\App\\Controllers\\ItemController', 'index');
-Route::add('GET', '/show/(\w+)', '\\App\\Controllers\\ItemController', 'show');
-Route::add('POST', '/create', '\\App\\Controllers\\ItemController', 'create');
+Route::add('GET', '/shop/create', '\\App\\Controllers\\ItemController', 'create');
+Route::add('POST', '/shop/create', '\\App\\Controllers\\ItemController', 'store');
+Route::add('GET', '/shop/(\w+)', '\\App\\Controllers\\ItemController', 'show');
 
 //Route::add('GET', '/cart', '\\App\\Controllers\\CartController', 'index');
-//Route::add('GET', '/shop', '\\App\\Controllers\\ItemController', 'index');
 
 Route::add('GET', '/auth/login', '\\App\\Controllers\\AuthController', 'loginView');
 Route::add('POST', '/auth/login', '\\App\\Controllers\\AuthController', 'login');

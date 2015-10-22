@@ -18,6 +18,9 @@ use App\Library\Auth;
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/cart">Cart</a></li>
+                <?php if(Auth::isAdmin()): ?>
+                    <li><a href="/shop/create">Create shop item</a></li>
+                <?php endif ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if(!Auth::check()): ?>

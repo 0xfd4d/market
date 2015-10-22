@@ -7,6 +7,17 @@ use App\Library\Request;
 
 class Auth
 {
+    public static function isAdmin()
+    {
+        if(self::check())
+        {
+            if($_SESSION['auth']['id'] == 1)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public static function check()
     {
         if(isset($_SESSION['auth']['loggedin']) && $_SESSION['auth']['loggedin'] == true)

@@ -21,7 +21,6 @@
         <div>
             <ul class="list-inline">
                 <li><a class="btn btn-success" href="/cart/add/<?php echo View::escape($item['id']); ?>">Add to cart</a></li>
-                <li><a class="btn btn-danger" href="#">Buy now!</a></li>
             </ul>
         </div>
     </div>
