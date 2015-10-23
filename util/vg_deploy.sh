@@ -43,10 +43,14 @@ then
     cp $base_dir/util/vg_nginx.conf /etc/nginx/nginx.conf
     service nginx start
 
+    echo "Setting up env..."
+    cd $base_dir/code
+    cp example.phinx.yml phinx.yml
+    cp example.env .env
+
     echo "Create DB..."
     mysql -uroot -p$DBPASSWD -e "CREATE DATABASE local CHARACTER SET utf8 COLLATE utf8_general_ci;"
     cd $base_dir/code
-    cp example.phinx.yml phinx.yml
     php $base_dir/code/vendor/bin/phinx migrate
 
     echo "Running database seeding..."
