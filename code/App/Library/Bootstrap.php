@@ -9,7 +9,7 @@ class Bootstrap
 {
     public function run()
     {
-        $dotenv = new Dotenv\Dotenv(__DIR__.'/../../');
+        $dotenv = new \Dotenv\Dotenv(__DIR__.'/../../');
         $dotenv->load();
         DB::init();
         Session::init();
