@@ -8,7 +8,7 @@ class DB
 
     public static function init()
     {
-        self::$db = new \PDO("mysql:host=localhost;dbname=local", "root", "root");
+        self::$db = new \PDO("mysql:host=".getenv('DB_HOST').";dbname=".getenv('DB_NAME'), getenv('DB_USER'), getenv('DB_PASSWORD'));
     }
     // public static function query($query)
     // {
