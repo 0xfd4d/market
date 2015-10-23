@@ -39,16 +39,15 @@ then
 
     echo "Customizing nginx..."
     service nginx stop
-    cp $base_dir/util/vg_nginx.conf /etc/nginx/sites-available/local.dev
-    ln -s /etc/nginx/sites-available/local.dev /etc/nginx/sites-enabled/local.dev
-    unlink /etc/nginx/sites-enabled/default
+    mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
+    cp $base_dir/util/vg_nginx.conf /etc/nginx/nginx.conf
     service nginx start
 
     echo "Create DB..."
-    mysql -u root -p$DBPASSWD -e "CREATE DATABASE local CHARACTER SET utf8 COLLATE utf8_general_ci;"
+    mysql -uroot -p$DBPASSWD -e "CREATE DATABASE local CHARACTER SET utf8 COLLATE utf8_general_ci;"
     cd $base_dir/code
     cp example.phinx.yml phinx.yml
-    php vendor/bin/phinx migrate
+    php $base_dir/code/vendor/bin/phinx migrate
 
     echo "Running database seeding..."
     cd $base_dir/code

@@ -117,7 +117,7 @@ class Auth
         $query->execute([$request->post['email']]);
         $result = $query->fetch();
         $_SESSION['auth']['loggedin'] = true;
-        $_SESSION['auth']['id'] = $result[0];
+        $_SESSION['auth']['id'] = $result['id'];
 
     }
     public static function encryptPassword($password)
