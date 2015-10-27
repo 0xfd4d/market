@@ -18,7 +18,7 @@ class CartController extends Controller
         }
         $items = Cart::getItemsByUserId(Auth::user()['id']);
         View::view('app', [
-            'title' => 'Cart',
+            'title' => 'Корзина',
             'view' => 'cart/index',
             'params' => [
                 'items' => $items
@@ -34,11 +34,6 @@ class CartController extends Controller
             exit();
         }
         $item = Cart::putItemByUserId(Auth::user()['id'], $request->params[0]);
-        // View::view('app', [
-        //     'title' => 'Cart',
-        //     'view' => 'cart/index',
-        //     'params' => []
-        //     ]
-        // );
+        header('Location: /shop/'.$request->params[0]);
     }
 }

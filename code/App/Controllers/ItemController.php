@@ -13,7 +13,7 @@ class ItemController extends Controller
     {
         $items = Items::getItems();
         View::view('app', [
-            'title' => 'Home',
+            'title' => 'Главная',
             'view' => 'items/index',
             'params' => [
                     'items' => $items,
@@ -26,7 +26,7 @@ class ItemController extends Controller
     {
         $item = Items::getItemById($request->params[0]);
         View::view('app', [
-            'title' => 'Home',
+            'title' => 'Главная',
             'view' => 'items/show',
             'params' => [
                     'item' => $item
@@ -42,7 +42,7 @@ class ItemController extends Controller
             exit();
         }
         View::view('app', [
-            'title' => 'Create',
+            'title' => 'Создать',
             'view' => 'items/create',
             'params' => [
                     'request' => $request
