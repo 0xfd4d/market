@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <title><?php echo $viewParams['title']; ?> - Market</title>
+    <title><?php echo $viewParams['title']; ?> - Магазин</title>
 </head>
 <body>
     <?php View::view('navbar'); ?>

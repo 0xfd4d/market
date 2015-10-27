@@ -32,7 +32,7 @@ class Items
         $errors = [];
         if(!$request->hasPost('name') || !$request->hasPost('price') || !$request->hasPost('image') || !$request->hasPost('description'))
         {
-            $errors[] = 'All fields required';
+            $errors[] = 'Все поля обязательны';
         }
         return $errors;
     }

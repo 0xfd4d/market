@@ -44,27 +44,27 @@ class Auth
         $errors = [];
         if(!$request->hasPost('name'))
         {
-            $errors[] = "Please give a name";
+            $errors[] = "Введите имя";
         }
         if(!$request->hasPost('email'))
         {
-            $errors[] = "Please give a email";
+            $errors[] = "Введите почту";
         }
         if(self::emailExists($request)>0)
         {
-            $errors[] = "This email is already taken";
+            $errors[] = "Эта почта уже занята";
         }
         if(!$request->hasPost('password') || !$request->hasPost('password_confirm'))
         {
-            $errors[] = "Please give a password";
+            $errors[] = "Введите пароль";
         }
         else if(strlen($request->post['password']) < 6)
         {
-            $errors[] = "Password length should be more then 6";
+            $errors[] = "Длина пароля должна быть больше 6";
         }
         if($request->hasPost('password') != $request->hasPost('password_confirm'))
         {
-            $errors[] = "Password and confirmation password do not match";
+            $errors[] = "Пароли не совпдают";
         }
         return $errors;
     }
@@ -80,11 +80,11 @@ class Auth
         $errors = [];
         if(!$request->hasPost('email') || !$request->hasPost('password'))
         {
-            $errors[] = "All fields required";
+            $errors[] = "Все поля обязательны";
         }
         else if(self::validateLoginUser($request)<1)
         {
-            $errors[] = "Invalid credentials";
+            $errors[] = "Почта или Пароль введены не верно";
         }
         return $errors;
     }
