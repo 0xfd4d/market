@@ -40,7 +40,7 @@ class AuthController extends Controller
         {
             Auth::register($request);
             View::view('app', [
-                'title' => 'Register',
+                'title' => 'Регистарация',
                 'view' => 'auth/success.register',
                 'params' => []
                 ]
@@ -60,7 +60,7 @@ class AuthController extends Controller
             exit();
         }
         View::view('app', [
-            'title' => 'Login',
+            'title' => 'Логин',
             'view' => 'auth/login',
             'params' => [
                     'request' => $request
@@ -76,7 +76,7 @@ class AuthController extends Controller
             exit();
         }
         View::view('app', [
-            'title' => 'Register',
+            'title' => 'Регистарация',
             'view' => 'auth/register',
             'params' => [
                     'request' => $request
