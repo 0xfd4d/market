@@ -12,26 +12,26 @@ use App\Library\Cart;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Market</a>
+            <a class="navbar-brand" href="/">Магазин</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li><a href="/">Главная</a></li>
                 <?php if(Auth::check()): ?>
-                    <li class="active"><a href="/cart">Cart (<?php echo sizeof(Cart::getItemsByUserId(Auth::user()['id'])); ?>)</a></li>
+                    <li class="active"><a href="/cart">Корзина (<?php echo sizeof(Cart::getItemsByUserId(Auth::user()['id'])); ?>)</a></li>
                 <?php endif ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if(Auth::isAdmin()): ?>
-                    <li class="active"><a href="/shop/create">Create shop item</a></li>
+                    <li class="active"><a href="/shop/create">Опубликовать товар</a></li>
                 <?php endif ?>
                 <?php if(!Auth::check()): ?>
-                    <li><a href="/auth/login">Login</a></li>
-                    <li><a href="/auth/register">Register</a></li>
+                    <li><a href="/auth/login">Логин</a></li>
+                    <li><a href="/auth/register">Регистрация</a></li>
                 <?php else: ?>
-                    <li class='navbar-text'>You are logged in.</li>
-                    <li><a href="/auth/logout">Logout</a></li>
+                    <li class='navbar-text'>Вы залогинены</li>
+                    <li><a href="/auth/logout">Выйти</a></li>
                 <?php endif ?>
             </ul>
         </div><!-- /.navbar-collapse -->

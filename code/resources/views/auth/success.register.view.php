@@ -1,1 +1,1 @@
-<h2>Thanks for registration, now you can <a href="/auth/login/">login</a>.</h2>
+<h2>Спасибо за регистрацию, теперь вы можете <a href="/auth/login/">войти</a>.</h2>

@@ -21,10 +21,10 @@
     <div>
         <ul class="list-inline">
             <?php if(Auth::check()): ?>
-                <li><a class="btn btn-success" href="/cart/add/<?php echo View::escape($item['id']); ?>">Add to cart</a></li>
+                <li><a class="btn btn-success" href="/cart/add/<?php echo View::escape($item['id']); ?>">Добавить в корзину</a></li>
             <?php else: ?>
                 <li>
-                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Please login before add to cart">Add to cart</button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Вы должны быть залогинены для добавления в корзину">Добавить в корзину</button>
                 </li>
             <?php endif ?>
         </ul>
