@@ -17,8 +17,8 @@ class ItemController extends Controller
             'view' => 'items/index',
             'params' => [
                     'items' => $items,
-                    'request' => $request
-                ]
+                    'request' => $request,
+                ],
             ]
         );
     }
@@ -29,15 +29,14 @@ class ItemController extends Controller
             'title' => 'Главная',
             'view' => 'items/show',
             'params' => [
-                    'item' => $item
-                ]
+                    'item' => $item,
+                ],
             ]
         );
     }
     public function create(Request $request)
     {
-        if(!Auth::isAdmin())
-        {
+        if (!Auth::isAdmin()) {
             header('Location: /');
             exit();
         }
@@ -45,24 +44,21 @@ class ItemController extends Controller
             'title' => 'Создать',
             'view' => 'items/create',
             'params' => [
-                    'request' => $request
-                ]
+                    'request' => $request,
+                ],
             ]
         );
     }
     public function store(Request $request)
     {
-        if(!Auth::isAdmin())
-        {
+        if (!Auth::isAdmin()) {
             header('Location: /');
             exit();
         }
         $errors = Items::validateCreateItem($request);
-        if(empty($errors[0]))
-        {
+        if (empty($errors[0])) {
             Items::putItem($request);
-        }
-        else {
+        } else {
             $request->errors = $errors;
             $this->create($request);
         }

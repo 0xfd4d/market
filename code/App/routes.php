@@ -1,10 +1,7 @@
 <?php
 
-use App\Library\DB;
 use App\Library\View;
 use App\Library\Route;
-use App\Library\Request;
-
 use App\Library\Auth;
 
 Route::init();
@@ -23,14 +20,14 @@ Route::add('GET', '/auth/register', '\\App\\Controllers\\AuthController', 'regis
 Route::add('POST', '/auth/register', '\\App\\Controllers\\AuthController', 'register');
 Route::add('GET', '/auth/logout', '\\App\\Controllers\\AuthController', 'logout');
 
-/**
+/*
  * 404 error.
  */
-Route::addCallback('ANY', '(.*)', function() {
+Route::addCallback('ANY', '(.*)', function () {
     View::view('app', [
         'title' => '404',
         'view' => '404',
-        'params' => []
+        'params' => [],
         ]
     );
 });

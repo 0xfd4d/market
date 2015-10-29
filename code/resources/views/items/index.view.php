@@ -1,9 +1,10 @@
 <?php
-    use App\Library\View;
-    use App\Library\Auth;
+use App\Library\View;
+use App\Library\Auth;
+
 ?>
 
-<?php foreach($viewParams['items'] as $item): ?>
+<?php foreach ($viewParams['items'] as $item): ?>
     <div style="padding-bottom: 5em;">
         <h2>
             <a href="/shop/<?php echo View::escape($item['id']); ?>">
@@ -23,7 +24,7 @@
             <ul class="list-inline">
                 <ul class="list-inline">
                     <li><h3>Цена: <?php echo View::escape($item['price']); ?>$</li></h3>
-                    <?php if(Auth::check()): ?>
+                    <?php if (Auth::check()): ?>
                         <li><a class="btn btn-success" href="/cart/add/<?php echo View::escape($item['id']); ?>">Добавить в корзину</a></li>
                     <?php else: ?>
                         <li>

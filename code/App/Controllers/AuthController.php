@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Library\DB;
 use App\Library\Auth;
 use App\Library\View;
 use App\Library\Request;
@@ -11,51 +10,42 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             header('Location: /');
             exit();
         }
         $errors = Auth::validateLogin($request);
-        if(empty($errors[0]))
-        {
+        if (empty($errors[0])) {
             Auth::login($request);
             header('Location: /');
-        }
-        else
-        {
+        } else {
             $request->errors = $errors;
             $this->loginView($request);
         }
     }
     public function register(Request $request)
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             header('Location: /');
             exit();
         }
         $errors = Auth::validateRegistration($request);
-        if(empty($errors[0]))
-        {
+        if (empty($errors[0])) {
             Auth::register($request);
             View::view('app', [
                 'title' => 'Регистарация',
                 'view' => 'auth/success.register',
-                'params' => []
+                'params' => [],
                 ]
             );
-        }
-        else
-        {
+        } else {
             $request->errors = $errors;
             $this->registerView($request);
         }
     }
     public function loginView(Request $request)
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             header('Location: /');
             exit();
         }
@@ -63,15 +53,14 @@ class AuthController extends Controller
             'title' => 'Логин',
             'view' => 'auth/login',
             'params' => [
-                    'request' => $request
-                ]
+                    'request' => $request,
+                ],
             ]
         );
     }
     public function registerView(Request $request)
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             header('Location: /');
             exit();
         }
@@ -79,8 +68,8 @@ class AuthController extends Controller
             'title' => 'Регистарация',
             'view' => 'auth/register',
             'params' => [
-                    'request' => $request
-                ]
+                    'request' => $request,
+                ],
             ]
         );
     }

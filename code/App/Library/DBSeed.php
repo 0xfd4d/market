@@ -2,10 +2,7 @@
 
 namespace App\Library;
 
-use App\Library\DB;
-use App\Library\Auth;
-
-Class DBSeed
+class DBSeed
 {
     public function run()
     {
@@ -14,26 +11,25 @@ Class DBSeed
         $user->execute([
                 'admin',
                 'mail@example.com',
-                Auth::encryptPassword('qweqwe')
+                Auth::encryptPassword('qweqwe'),
             ]
         );
-        $items = array(
-            array(
+        $items = [
+            [
                 'name' => 'Logitech Optical B100 USB Black OEM',
                 'price' => '6',
                 'image' => 'http://www.logitech.com/assets/30148/b100-optical-usb-mouse.png',
-                'description' => 'Office mouse'
-            ),
-            array(
+                'description' => 'Office mouse',
+            ],
+            [
                 'name' => 'Logitech Keyboard K120 Black',
                 'price' => '8',
                 'image' => 'http://www.logitech.com/assets/26704/26704.png',
-                'description' => 'Office Keyboard'
-            )
-        );
+                'description' => 'Office Keyboard',
+            ],
+        ];
         $newitem = DB::$db->prepare('INSERT INTO items (name, price, image, description) VALUES (?, ?, ?, ?)');
-        foreach($items as $item)
-        {
+        foreach ($items as $item) {
             $newitem->execute([$item['name'], $item['price'], $item['image'], $item['description']]);
         }
     }

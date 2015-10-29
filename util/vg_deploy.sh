@@ -5,7 +5,7 @@ export base_dir=/home/vagrant/local.dev
 export DBPASSWD=root
 
 if [ ! -f ~/.deploy_run ]
-then
+    then
     echo "Add Vagrant user to the sudoers group..."
     echo "vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
@@ -15,7 +15,7 @@ then
 
     echo "Installing packages..."
     apt-get update
-     curl -sL https://deb.nodesource.com/setup_4.x | bash -
+    curl -sL https://deb.nodesource.com/setup_4.x | bash -
     apt-get -q -y install nodejs software-properties-common vim git curl
     apt-get -q -y install mysql-server nginx
     apt-get -q -y install php5-cli php5-fpm php5-mysql php5-curl php5-mcrypt

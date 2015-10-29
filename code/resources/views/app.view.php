@@ -1,5 +1,6 @@
 <?php
-    use App\Library\View;
+use App\Library\View;
+
 ?>
 
 <!DOCTYPE html>

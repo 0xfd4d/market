@@ -2,37 +2,36 @@
 
 namespace App\Library;
 
-use App\Library\Session;
-use App\Library\Request;
-
 class Auth
 {
     public static function isAdmin()
     {
-        if(self::check())
-        {
-            if($_SESSION['auth']['id'] == 1)
-            {
+        if (self::check()) {
+            if ($_SESSION['auth']['id'] == 1) {
                 return true;
             }
         }
+
         return false;
     }
     public static function check()
     {
-        if(isset($_SESSION['auth']['loggedin']) && $_SESSION['auth']['loggedin'] == true)
+        if (isset($_SESSION['auth']['loggedin']) && $_SESSION['auth']['loggedin'] == true) {
             return true;
+        }
+
         return false;
     }
     public static function user()
     {
-        if(self::check())
-        {
+        if (self::check()) {
             $query = DB::$db->prepare('SELECT * FROM users WHERE id=?');
             $query->execute([$_SESSION['auth']['id']]);
             $result = $query->fetchAll();
+
             return $result[0];
         }
+
         return false;
     }
     public static function logout()
@@ -42,30 +41,24 @@ class Auth
     public static function validateRegistration(Request $request)
     {
         $errors = [];
-        if(!$request->hasPost('name'))
-        {
-            $errors[] = "Введите имя";
+        if (!$request->hasPost('name')) {
+            $errors[] = 'Введите имя';
         }
-        if(!$request->hasPost('email'))
-        {
-            $errors[] = "Введите почту";
+        if (!$request->hasPost('email')) {
+            $errors[] = 'Введите почту';
         }
-        if(self::emailExists($request)>0)
-        {
-            $errors[] = "Эта почта уже занята";
+        if (self::emailExists($request) > 0) {
+            $errors[] = 'Эта почта уже занята';
         }
-        if(!$request->hasPost('password') || !$request->hasPost('password_confirm'))
-        {
-            $errors[] = "Введите пароль";
+        if (!$request->hasPost('password') || !$request->hasPost('password_confirm')) {
+            $errors[] = 'Введите пароль';
+        } elseif (strlen($request->post['password']) < 6) {
+            $errors[] = 'Длина пароля должна быть больше 6';
         }
-        else if(strlen($request->post['password']) < 6)
-        {
-            $errors[] = "Длина пароля должна быть больше 6";
+        if ($request->hasPost('password') != $request->hasPost('password_confirm')) {
+            $errors[] = 'Пароли не совпдают';
         }
-        if($request->hasPost('password') != $request->hasPost('password_confirm'))
-        {
-            $errors[] = "Пароли не совпдают";
-        }
+
         return $errors;
     }
     private static function emailExists($request)
@@ -73,19 +66,18 @@ class Auth
         $query = DB::$db->prepare('SELECT COUNT(*) as count FROM users WHERE email=?');
         $query->execute([$request->post['email']]);
         $result = $query->fetchAll();
+
         return $result[0]['count'];
     }
     public static function validateLogin(Request $request)
     {
         $errors = [];
-        if(!$request->hasPost('email') || !$request->hasPost('password'))
-        {
-            $errors[] = "Все поля обязательны";
+        if (!$request->hasPost('email') || !$request->hasPost('password')) {
+            $errors[] = 'Все поля обязательны';
+        } elseif (self::validateLoginUser($request) < 1) {
+            $errors[] = 'Почта или Пароль введены не верно';
         }
-        else if(self::validateLoginUser($request)<1)
-        {
-            $errors[] = "Почта или Пароль введены не верно";
-        }
+
         return $errors;
     }
     private static function validateLoginUser(Request $request)
@@ -93,10 +85,11 @@ class Auth
         $query = DB::$db->prepare('SELECT COUNT(*) as count FROM users WHERE email=? AND password=?');
         $query->execute([
             $request->post['email'],
-            self::encryptPassword($request->post['password'])
+            self::encryptPassword($request->post['password']),
             ]
         );
         $result = $query->fetchAll();
+
         return $result[0]['count'];
     }
     public function register(Request $request)
@@ -105,7 +98,7 @@ class Auth
         $query->execute([
             $request->post['name'],
             $request->post['email'],
-            self::encryptPassword($request->post['password'])
+            self::encryptPassword($request->post['password']),
             ]
         );
     }
@@ -116,7 +109,6 @@ class Auth
         $result = $query->fetch();
         $_SESSION['auth']['loggedin'] = true;
         $_SESSION['auth']['id'] = $result['id'];
-
     }
     public static function encryptPassword($password)
     {

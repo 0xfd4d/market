@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Library\View;
-use App\Library\Request;
 
 class IndexController extends Controller
 {
@@ -12,7 +11,7 @@ class IndexController extends Controller
         View::view('app', [
             'title' => 'Home',
             'view' => 'index/index',
-            'params' => []
+            'params' => [],
             ]
         );
     }
