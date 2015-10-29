@@ -11,8 +11,7 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        if(!Auth::check())
-        {
+        if (!Auth::check()) {
             header('Location: /');
             exit();
         }
@@ -21,15 +20,14 @@ class CartController extends Controller
             'title' => 'Корзина',
             'view' => 'cart/index',
             'params' => [
-                'items' => $items
-                ]
+                'items' => $items,
+                ],
             ]
         );
     }
     public function add(Request $request)
     {
-        if(!Auth::check())
-        {
+        if (!Auth::check()) {
             header('Location: /');
             exit();
         }

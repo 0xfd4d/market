@@ -2,9 +2,6 @@
 
 namespace App\Library;
 
-use App\Library\DB;
-use App\Library\Session;
-
 class Bootstrap
 {
     public function run()

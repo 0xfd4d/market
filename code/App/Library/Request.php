@@ -4,12 +4,12 @@ namespace App\Library;
 
 class Request
 {
-    public $url = NULL;
-    public $params = NULL;
-    public $segments = NULL;
-    public $requestMethod = NULL;
+    public $url = null;
+    public $params = null;
+    public $segments = null;
+    public $requestMethod = null;
     public $post = [];
-    public $errors = NULL;
+    public $errors = null;
 
     public function getURL()
     {
@@ -18,6 +18,7 @@ class Request
     public function getSegments($url)
     {
         $return = preg_split('/\//', $url, -1, PREG_SPLIT_NO_EMPTY);
+
         return $return;
     }
     public function getMethod()
@@ -28,6 +29,7 @@ class Request
     {
         array_shift($params);
         $this->params = $params;
+
         return $params;
     }
     public function formatUrl($url)
@@ -37,21 +39,20 @@ class Request
     public function formatPost()
     {
         $posts = $_POST;
-        foreach($posts as $post => $key)
-        {
+        foreach ($posts as $post => $key) {
             $posts[$key] = trim($post);
         }
+
         return $posts;
     }
     public function hasPost($post)
     {
-        if(isset($this->post[$post]))
-        {
-            if(strlen($this->post[$post]))
-            {
+        if (isset($this->post[$post])) {
+            if (strlen($this->post[$post])) {
                 return $this->post[$post];
             }
         }
+
         return false;
     }
     public function run()

@@ -2,8 +2,6 @@
 
 namespace App\Library;
 
-use App\Library\Request;
-
 class Items
 {
     public static function getItems()
@@ -11,6 +9,7 @@ class Items
         $query = DB::$db->prepare('SELECT * FROM items ORDER BY id desc');
         $query->execute();
         $result = $query->fetchAll();
+
         return $result;
     }
     public static function getItemById($id)
@@ -18,6 +17,7 @@ class Items
         $query = DB::$db->prepare('SELECT * FROM items WHERE id=?');
         $query->execute([$id]);
         $result = $query->fetchAll();
+
         return $result[0];
     }
     public static function putItem($request)
@@ -25,15 +25,16 @@ class Items
         $query = DB::$db->prepare('INSERT INTO items (name, price, image, description) VALUES (?, ?, ?, ?)');
         $query->execute([$request->post['name'], $request->post['price'], $request->post['image'], $request->post['description']]);
         $result = $query->fetch();
+
         return $result[0];
     }
     public static function validateCreateItem($request)
     {
         $errors = [];
-        if(!$request->hasPost('name') || !$request->hasPost('price') || !$request->hasPost('image') || !$request->hasPost('description'))
-        {
+        if (!$request->hasPost('name') || !$request->hasPost('price') || !$request->hasPost('image') || !$request->hasPost('description')) {
             $errors[] = 'Все поля обязательны';
         }
+
         return $errors;
     }
 }
