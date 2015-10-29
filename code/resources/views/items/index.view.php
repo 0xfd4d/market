@@ -22,6 +22,7 @@
         <div>
             <ul class="list-inline">
                 <ul class="list-inline">
+                    <li><h3>Цена: <?php echo View::escape($item['price']); ?>$</li></h3>
                     <?php if(Auth::check()): ?>
                         <li><a class="btn btn-success" href="/cart/add/<?php echo View::escape($item['id']); ?>">Добавить в корзину</a></li>
                     <?php else: ?>
