@@ -17,16 +17,24 @@ Class DBSeed
                 Auth::encryptPassword('qweqwe')
             ]
         );
-        for($i=0; $i<5; $i++)
+        $items = array(
+            array(
+                'name' => 'Logitech Optical B100 USB Black OEM',
+                'price' => '6',
+                'image' => 'http://www.logitech.com/assets/30148/b100-optical-usb-mouse.png',
+                'description' => 'Office mouse'
+            ),
+            array(
+                'name' => 'Logitech Keyboard K120 Black',
+                'price' => '8',
+                'image' => 'http://www.logitech.com/assets/26704/26704.png',
+                'description' => 'Office Keyboard'
+            )
+        );
+        $newitem = DB::$db->prepare('INSERT INTO items (name, price, image, description) VALUES (?, ?, ?, ?)');
+        foreach($items as $item)
         {
-            $item = DB::$db->prepare('INSERT INTO items (name, price, image, description) VALUES (?, ?, ?, ?)');
-            $item->execute([
-                'Lorem Ipsum',
-                '10$',
-                'http://lorempixel.com/400/200/technics',
-                'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-                ]
-            );
+            $newitem->execute([$item['name'], $item['price'], $item['image'], $item['description']]);
         }
     }
 }
