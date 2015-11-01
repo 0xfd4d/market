@@ -1,7 +1,9 @@
 <div class="row">
     <div class="col-md-offset-1">
         <div class="col-md-10">
-            <h2>Ваша корзина</h2>
+            <h2>Ваша корзина
+                <a href="https://qiwi.ru/" class="btn btn-primary pull-right">Оплатить</a>
+            </h2>
             <hr/>
             <?php foreach ($viewParams['items'] as $item): ?>
                 <div class="item">
