@@ -21,6 +21,7 @@ class CartController extends Controller
             'view' => 'cart/index',
             'params' => [
                 'items' => $items,
+                'price_count' => Cart::countAllPrices($items)
                 ],
             ]
         );
@@ -32,6 +33,15 @@ class CartController extends Controller
             exit();
         }
         $item = Cart::putItemByUserId(Auth::user()['id'], $request->params[0]);
-        header('Location: /shop/'.$request->params[0]);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+    public function remove(Request $request)
+    {
+        if (!Auth::check()) {
+            header('Location: /');
+            exit();
+        }
+        Cart::removeItemById($request->params[0]);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }

@@ -76,6 +76,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        header('Location: /');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
