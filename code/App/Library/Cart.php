@@ -20,4 +20,21 @@ class Cart
 
         return $result;
     }
+    public static function removeItemById($id)
+    {
+        $items = DB::$db->prepare('DELETE FROM cart WHERE id=?');
+        $items->execute([$id]);
+        $result = $items->fetch();
+
+        return $result;
+    }
+    public static function countAllPrices($collection)
+    {
+        $result = 0;
+        foreach ($collection as $item) {
+            $result += $item['price'];
+        }
+        
+        return $result;
+    }
 }
