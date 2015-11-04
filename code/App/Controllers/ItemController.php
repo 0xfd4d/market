@@ -55,16 +55,53 @@ class ItemController extends Controller
             header('Location: /');
             exit();
         }
-        $errors = Items::validateCreateItem($request);
+        $errors = Items::validateItem($request);
         if (empty($errors[0])) {
             Items::putItem($request);
+            header('Location: /');
         } else {
             $request->errors = $errors;
             $this->create($request);
         }
     }
-    // public function update(Request $request)
-    // {
-    //
-    // }
+    public function edit(Request $request)
+    {
+        if (!Auth::isAdmin()) {
+            header('Location: /');
+            exit();
+        }
+        $item = Items::getItemById($request->params[0]);
+        View::view('app', [
+            'title' => 'Изменить',
+            'view' => 'items/edit',
+            'params' => [
+                    'item' => $item,
+                    'request' => $request,
+                ],
+            ]
+        );
+    }
+    public function update(Request $request)
+    {
+        if (!Auth::isAdmin()) {
+            header('Location: /');
+            exit();
+        }
+        $errors = Items::validateItem($request);
+        if (empty($errors[0])) {
+            Items::updateItem($request);
+        } else {
+            $request->errors = $errors;
+            $this->edit($request);
+        }
+    }
+    public function delete(Request $request)
+    {
+        if (!Auth::isAdmin()) {
+            header('Location: /');
+            exit();
+        }
+        Items::deleteItemById($request->params[0]);
+        header('Location: /');
+    }
 }

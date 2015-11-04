@@ -28,7 +28,7 @@ class Items
 
         return $result[0];
     }
-    public static function validateCreateItem($request)
+    public static function validateItem($request)
     {
         $errors = [];
         if (!$request->hasPost('name') || !$request->hasPost('price') || !$request->hasPost('image') || !$request->hasPost('description')) {
@@ -36,5 +36,21 @@ class Items
         }
 
         return $errors;
+    }
+    public static function updateItem($request)
+    {
+        $query = DB::$db->prepare('UPDATE items SET name=?, price=?, image=?, description=? WHERE id=?');
+        $query->execute([$request->post['name'], $request->post['price'], $request->post['image'], $request->post['description'], $request->params[0]]);
+        $result = $query->fetch();
+
+        return $result[0];
+    }
+    public static function deleteItemById($id)
+    {
+        $query = DB::$db->prepare('DELETE FROM items WHERE id=?');
+        $query->execute([$id]);
+        $result = $query->fetch();
+
+        return $result;
     }
 }
