@@ -9,6 +9,9 @@ use App\Library\Auth;
         <a href="/shop/<?php echo View::escape($viewParams['item']['id']); ?>">
             <?php echo View::escape($viewParams['item']['name']); ?>
         </a>
+        <span class="pull-right">
+            <a class="btn btn-info " href="/shop/edit/<?php echo $viewParams['item']['id']; ?>">Изменить</a>
+        </span>
     </h2>
     <hr/>
     <div class="row" style="padding-bottom: 1em">
