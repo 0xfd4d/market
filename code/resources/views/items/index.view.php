@@ -13,11 +13,11 @@ use App\Library\Auth;
         </h2>
         <hr/>
         <div class="row" style="padding-bottom: 1em">
-            <div class="col-md-6">
-                <p><?php echo View::escape($item['littledescription']); ?></p>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <img class="img-responsive" src="<?php echo View::escape($item['image']); ?>">
+            </div>
+            <div class="col-md-8">
+                <p><?php echo View::escape($item['littledescription']); ?></p>
             </div>
         </div>
         <div>
