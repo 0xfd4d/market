@@ -14,7 +14,7 @@ use App\Library\Auth;
         <hr/>
         <div class="row" style="padding-bottom: 1em">
             <div class="col-md-6">
-                <p><?php echo View::escape($item['description']); ?></p>
+                <p><?php echo View::escape($item['littledescription']); ?></p>
             </div>
             <div class="col-md-6">
                 <img class="img-responsive" src="<?php echo View::escape($item['image']); ?>">

@@ -22,8 +22,8 @@ class Items
     }
     public static function putItem($request)
     {
-        $query = DB::$db->prepare('INSERT INTO items (name, price, image, description) VALUES (?, ?, ?, ?)');
-        $query->execute([$request->post['name'], $request->post['price'], $request->post['image'], $request->post['description']]);
+        $query = DB::$db->prepare('INSERT INTO items (name, price, image, description, littledescription) VALUES (?, ?, ?, ?, ?)');
+        $query->execute([$request->post['name'], $request->post['price'], $request->post['image'], $request->post['description'], $request->post['littledescription']]);
         $result = $query->fetch();
 
         return $result[0];
@@ -31,7 +31,7 @@ class Items
     public static function validateItem($request)
     {
         $errors = [];
-        if (!$request->hasPost('name') || !$request->hasPost('price') || !$request->hasPost('image') || !$request->hasPost('description')) {
+        if (!$request->hasPost('name') || !$request->hasPost('price') || !$request->hasPost('image') || !$request->hasPost('description') || !$request->hasPost('littledescription')) {
             $errors[] = 'Все поля обязательны';
         }
 
@@ -39,8 +39,8 @@ class Items
     }
     public static function updateItem($request)
     {
-        $query = DB::$db->prepare('UPDATE items SET name=?, price=?, image=?, description=? WHERE id=?');
-        $query->execute([$request->post['name'], $request->post['price'], $request->post['image'], $request->post['description'], $request->params[0]]);
+        $query = DB::$db->prepare('UPDATE items SET name=?, price=?, image=?, description=?, littledescription=? WHERE id=?');
+        $query->execute([$request->post['name'], $request->post['price'], $request->post['image'], $request->post['description'], $request->post['littledescription'], $request->params[0]]);
         $result = $query->fetch();
 
         return $result[0];
