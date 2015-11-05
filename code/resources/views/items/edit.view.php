@@ -41,6 +41,15 @@ use App\Library\View;
                         ?>">
                 </div>
                 <div class="form-group">
+                    <textarea style="height: 8em;" name="littledescription" class="form-control" placeholder="Короткое писание"><?php
+                    if ($viewParams['request']->hasPost('littledescription')):
+                        echo View::escape($viewParams['request']->post['littledescription']);
+                    else:
+                        echo View::escape($viewParams['item']['littledescription']);
+                    endif;
+                        ?></textarea>
+                </div>
+                <div class="form-group">
                     <textarea style="height: 10em;" name="description" class="form-control" placeholder="Описание"><?php
                     if ($viewParams['request']->hasPost('description')):
                         echo View::escape($viewParams['request']->post['description']);
