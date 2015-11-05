@@ -18,5 +18,10 @@ use App\Library\View;
     <div class="container">
         <?php View::view($viewParams['view'], $viewParams['params']); ?>
     </div>
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
 </body>
 </html>
