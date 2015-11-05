@@ -36,8 +36,3 @@ use App\Library\Auth;
         </div>
     </div>
 <?php endforeach ?>
-<script>
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
-</script>
