@@ -10,7 +10,7 @@ use App\Library\View;
             <hr/>
             <form action="/shop/create" method="post">
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Имя" value="<?php if ($viewParams['request']->hasPost('name')) {
+                    <input type="text" name="name" class="form-control" placeholder="Название" value="<?php if ($viewParams['request']->hasPost('name')) {
     echo View::escape($viewParams['request']->post['name']);
 } ?>">
                 </div>
@@ -25,9 +25,13 @@ use App\Library\View;
 } ?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="description" class="form-control" placeholder="Описание" value="<?php if ($viewParams['request']->hasPost('description')) {
-    echo View::escape($viewParams['request']->post['description']);
-} ?>">
+                    <div class="form-group">
+                        <textarea style="height: 10em;" name="description" class="form-control" placeholder="Описание"><?php
+                        if ($viewParams['request']->hasPost('description')):
+                            echo View::escape($viewParams['request']->post['description']);
+                        endif;
+                            ?></textarea>
+                    </div>
                 </div>
                 <?php if (isset($viewParams['request']->errors[0])): ?>
                     <?php foreach ($viewParams['request']->errors as $error): ?>

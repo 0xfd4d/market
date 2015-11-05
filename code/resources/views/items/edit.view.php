@@ -14,7 +14,7 @@ use App\Library\View;
             <hr/>
             <form action="/shop/edit/<?php echo $viewParams['request']->params[0]; ?>" method="post">
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Имя" value="<?php
+                    <input type="text" name="name" class="form-control" placeholder="Название" value="<?php
                     if ($viewParams['request']->hasPost('name')):
                         echo View::escape($viewParams['request']->post['name']);
                     else:
@@ -41,13 +41,13 @@ use App\Library\View;
                         ?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="description" class="form-control" placeholder="Описание" value="<?php
+                    <textarea style="height: 10em;" name="description" class="form-control" placeholder="Описание"><?php
                     if ($viewParams['request']->hasPost('description')):
                         echo View::escape($viewParams['request']->post['description']);
                     else:
                         echo View::escape($viewParams['item']['description']);
                     endif;
-                        ?>">
+                        ?></textarea>
                 </div>
                 <?php if (isset($viewParams['request']->errors[0])): ?>
                     <?php foreach ($viewParams['request']->errors as $error): ?>
