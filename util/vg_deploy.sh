@@ -14,7 +14,6 @@ if [ ! -f ~/.deploy_run ]
     echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections
 
     echo "Installing packages..."
-    apt-get update
     curl -sL https://deb.nodesource.com/setup_4.x | bash -
     apt-get -q -y install nodejs software-properties-common vim git curl
     apt-get -q -y install mysql-server nginx
@@ -45,7 +44,6 @@ if [ ! -f ~/.deploy_run ]
 
     echo "Setting up env..."
     cd $base_dir/code
-    cp example.phinx.yml phinx.yml
     cp example.env .env
 
     echo "Create DB..."
