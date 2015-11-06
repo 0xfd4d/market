@@ -17,6 +17,7 @@ Route::add('GET', '/shop/edit/(\d+)', '\\App\\Controllers\\ItemController', 'edi
 Route::add('POST', '/shop/edit/(\d+)', '\\App\\Controllers\\ItemController', 'update');
 
 Route::add('GET', '/shop/(\d+)/comment', '\\App\\Controllers\\CommentController', 'create');
+Route::add('POST', '/shop/(\d+)/comment', '\\App\\Controllers\\CommentController', 'store');
 
 Route::add('GET', '/shop/(\d+)', '\\App\\Controllers\\ItemController', 'show');
 
