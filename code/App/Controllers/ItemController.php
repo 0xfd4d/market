@@ -90,6 +90,7 @@ class ItemController extends Controller
         $errors = Items::validateItem($request);
         if (empty($errors[0])) {
             Items::updateItem($request);
+            header('Location: /shop/'.$request->params[0]);
         } else {
             $request->errors = $errors;
             $this->edit($request);
