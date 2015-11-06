@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Library\View;
 use App\Library\Items;
 use App\Library\Request;
+use App\Library\Comments;
 use App\Library\Auth;
 
 class ItemController extends Controller
@@ -25,14 +26,17 @@ class ItemController extends Controller
     public function show(Request $request)
     {
         $item = Items::getItemById($request->params[0]);
-        View::view('app', [
-            'title' => 'Главная',
-            'view' => 'items/show',
-            'params' => [
-                    'item' => $item,
-                ],
-            ]
-        );
+        $comments = Comments::getAllCommentsByItemId($request->params[0]);
+        echo '<pre>';
+        print_r($comments);
+        // View::view('app', [
+        //     'title' => 'Главная',
+        //     'view' => 'items/show',
+        //     'params' => [
+        //             'item' => $item,
+        //         ],
+        //     ]
+        // );
     }
     public function create(Request $request)
     {

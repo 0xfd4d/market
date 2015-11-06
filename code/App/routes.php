@@ -7,12 +7,18 @@ use App\Library\Auth;
 Route::init();
 
 Route::add('GET', '/', '\\App\\Controllers\\ItemController', 'index');
+
 Route::add('GET', '/shop/create', '\\App\\Controllers\\ItemController', 'create');
 Route::add('POST', '/shop/create', '\\App\\Controllers\\ItemController', 'store');
+
 Route::add('GET', '/shop/delete/(\d+)', '\\App\\Controllers\\ItemController', 'delete');
+
 Route::add('GET', '/shop/edit/(\d+)', '\\App\\Controllers\\ItemController', 'edit');
 Route::add('POST', '/shop/edit/(\d+)', '\\App\\Controllers\\ItemController', 'update');
-Route::add('GET', '/shop/(\w+)', '\\App\\Controllers\\ItemController', 'show');
+
+Route::add('GET', '/shop/(\d+)/comment', '\\App\\Controllers\\CommentController', 'create');
+
+Route::add('GET', '/shop/(\d+)', '\\App\\Controllers\\ItemController', 'show');
 
 Route::add('GET', '/cart', '\\App\\Controllers\\CartController', 'index');
 Route::add('GET', '/cart/add/(\d+)', '\\App\\Controllers\\CartController', 'add');
