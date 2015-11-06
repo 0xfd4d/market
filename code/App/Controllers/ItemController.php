@@ -27,16 +27,18 @@ class ItemController extends Controller
     {
         $item = Items::getItemById($request->params[0]);
         $comments = Comments::getAllCommentsByItemId($request->params[0]);
-        echo '<pre>';
-        print_r($comments);
-        // View::view('app', [
-        //     'title' => 'Главная',
-        //     'view' => 'items/show',
-        //     'params' => [
-        //             'item' => $item,
-        //         ],
-        //     ]
-        // );
+        $comments_count = Comments::getCommentCount($request->params[0]);
+        View::view('app', [
+            'title' => 'Главная',
+            'view' => 'items/show',
+            'params' => [
+                    'request' => $request,
+                    'item' => $item,
+                    'comments' => $comments,
+                    'comments_count' => $comments_count,
+                ],
+            ]
+        );
     }
     public function create(Request $request)
     {
