@@ -5,25 +5,27 @@ use App\Library\Route;
 use App\Library\Auth;
 
 Route::init();
-
+//[0-9A-Za-z]
 Route::add('GET', '/', '\\App\\Controllers\\ItemController', 'index');
+
+Route::add('GET', '/shop/([0-9]+)', '\\App\\Controllers\\ItemController', 'show');
 
 Route::add('GET', '/shop/create', '\\App\\Controllers\\ItemController', 'create');
 Route::add('POST', '/shop/create', '\\App\\Controllers\\ItemController', 'store');
 
-Route::add('GET', '/shop/delete/(\d+)', '\\App\\Controllers\\ItemController', 'delete');
+Route::add('GET', '/shop/delete/([0-9]+)', '\\App\\Controllers\\ItemController', 'delete');
 
-Route::add('GET', '/shop/edit/(\d+)', '\\App\\Controllers\\ItemController', 'edit');
-Route::add('POST', '/shop/edit/(\d+)', '\\App\\Controllers\\ItemController', 'update');
+Route::add('GET', '/shop/edit/([0-9]+)', '\\App\\Controllers\\ItemController', 'edit');
+Route::add('POST', '/shop/edit/([0-9]+)', '\\App\\Controllers\\ItemController', 'update');
 
-Route::add('GET', '/shop/(\d+)/comment', '\\App\\Controllers\\CommentController', 'create');
-Route::add('POST', '/shop/(\d+)/comment', '\\App\\Controllers\\CommentController', 'store');
+Route::add('GET', '/shop/([0-9]+)/comment', '\\App\\Controllers\\CommentController', 'create');
+Route::add('POST', '/shop/([0-9]+)/comment', '\\App\\Controllers\\CommentController', 'store');
 
-Route::add('GET', '/shop/(\d+)', '\\App\\Controllers\\ItemController', 'show');
+
 
 Route::add('GET', '/cart', '\\App\\Controllers\\CartController', 'index');
-Route::add('GET', '/cart/add/(\d+)', '\\App\\Controllers\\CartController', 'add');
-Route::add('GET', '/cart/remove/(\d+)', '\\App\\Controllers\\CartController', 'remove');
+Route::add('GET', '/cart/add/([0-9]+)', '\\App\\Controllers\\CartController', 'add');
+Route::add('GET', '/cart/remove/([0-9]+)', '\\App\\Controllers\\CartController', 'remove');
 
 Route::add('GET', '/auth/login', '\\App\\Controllers\\AuthController', 'loginView');
 Route::add('POST', '/auth/login', '\\App\\Controllers\\AuthController', 'login');
