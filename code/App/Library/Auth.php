@@ -47,6 +47,9 @@ class Auth
         if (!$request->hasPost('email')) {
             $errors[] = 'Введите почту';
         }
+        if (!filter_var($request->post['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Ваша почта - не почта';
+        }
         if (self::emailExists($request) > 0) {
             $errors[] = 'Эта почта уже занята';
         }
