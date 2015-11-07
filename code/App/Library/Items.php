@@ -34,6 +34,9 @@ class Items
         if (!$request->hasPost('name') || !$request->hasPost('price') || !$request->hasPost('image') || !$request->hasPost('description') || !$request->hasPost('littledescription')) {
             $errors[] = 'Все поля обязательны';
         }
+        if (!is_numeric($request->post['price'])) {
+            $errors[] = 'Поле "Цена" должно быть в числовом формате';
+        }
 
         return $errors;
     }
