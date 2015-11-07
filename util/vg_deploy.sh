@@ -51,9 +51,5 @@ if [ ! -f ~/.deploy_run ]
     cd $base_dir/code
     php $base_dir/code/vendor/bin/phinx migrate
 
-    echo "Running database seeding..."
-    cd $base_dir/code
-    php seed.php
-
     touch ~/.deploy_run
 fi
